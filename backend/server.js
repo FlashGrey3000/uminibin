@@ -18,6 +18,26 @@ const pool = new Pool({
     host: process.env.HOST
 });
 
-pool.query("CREATE TABLE tablename(hehe INT PRIMARY KEY)");
+pool.query("CREATE TABLE IF NOT EXISTS messages (id UUID PRIMARY KEY DEFAULT gen_random_uuid(), message TEXT NOT NULL)");
+
+app.post('/api/message', (req, res) => {
+    const { message } = req.body;
+    pool.query("INSERT INTO messages (message) VALUES ($1)",
+        [message],
+        (err, result) => {
+            if (err) {console.error(err); res.send(`error: ${err}`)} 
+            else {res.json(result)}
+        }
+    )
+});
+
+app.get('/api/message', (req, res) => {
+    pool.query("SELECT message from messages OFFSET floor(random() * (SELECT count(*) FROM messages)) LIMIT 1",
+        (err, result) => {
+            if (err) {console.error(err); res.send(`error: ${err}`)}
+            else {res.json(result)}
+        }
+    )
+});
 
 app.listen(3000, () => console.log("Server running..."));
