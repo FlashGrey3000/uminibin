@@ -35,7 +35,7 @@ app.get('/api/message', (req, res) => {
     pool.query("SELECT message from messages OFFSET floor(random() * (SELECT count(*) FROM messages)) LIMIT 1",
         (err, result) => {
             if (err) {console.error(err); res.send(`error: ${err}`)}
-            else {res.json(result)}
+            else {res.json(result.rows[0])}
         }
     )
 });
