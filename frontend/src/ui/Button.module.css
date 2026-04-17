@@ -1,0 +1,28 @@
+.button {
+    border-bottom-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-color: orange;
+    border-width: 0.15em;
+    background-color: #ffd49d;
+    font-size: 1.1em;
+    color: #582e06;
+    padding-block: 7px;
+    padding-inline: 15px;
+    font-family: 'Winky Rough';
+    font-weight: 500;
+    text-shadow: #45454565 2px 4px 2px;
+    transition: 0.2s ease-out;
+}
+
+.button:hover {
+    background-color: #ffce8a;
+    inset: 2px;
+    cursor: pointer;
+    text-shadow: #45454565 2px 3px 2px;
+}
+
+.button:active {
+    text-shadow: #45454565 2px -2px 2px;
+    transform: translateY(5px);
+}
+
