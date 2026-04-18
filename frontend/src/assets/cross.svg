@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="59.999996mm"
+   height="59.999996mm"
+   viewBox="0 0 59.999996 59.999996"
+   version="1.1"
+   id="svg1"
+   inkscape:export-filename="bitmap.svg"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#999999"
+     borderopacity="1"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:lockguides="false"
+     showguides="true"
+     showgrid="true">
+    <inkscape:grid
+       id="grid4"
+       units="mm"
+       originx="-1.9999999"
+       originy="-1.9999998"
+       spacingx="1.9999999"
+       spacingy="1.9999999"
+       empcolor="#0099e5"
+       empopacity="0.30196078"
+       color="#0099e5"
+       opacity="0.14901961"
+       empspacing="8"
+       enabled="true"
+       visible="true"
+       dotted="false"
+       snapvisiblegridlinesonly="true" />
+    <inkscape:page
+       x="0"
+       y="0"
+       width="59.999996"
+       height="59.999996"
+       id="page2"
+       margin="0"
+       bleed="0" />
+  </sodipodi:namedview>
+  <defs
+     id="defs1" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-2,-1.9999998)">
+    <path
+       style="fill:#aa4400;stroke:#ffffff;stroke-width:1.5875e-08"
+       d="m 61.999997,1.9999999 c 0,0 -13.999998,17.9999991 -25.999998,17.9999991 -12,0 0,0 0,0 l -4,12 z"
+       id="path19" />
+    <path
+       style="fill:#aa4400;stroke:#ffffff;stroke-width:1.5875e-08"
+       d="m 61.999998,2.0000009 c 0,0 -17.999999,13.9999981 -17.999999,25.9999981 0,12 0,0 0,0 l -12,4 z"
+       id="path20" />
+    <path
+       style="fill:#aa4400;stroke:#ffffff;stroke-width:1.5875e-08"
+       d="m 61.999997,61.999998 c 0,0 -13.999998,-17.999999 -25.999998,-17.999999 -12,0 0,0 0,0 l -4,-12 z"
+       id="path21" />
+    <path
+       style="fill:#aa4400;stroke:#ffffff;stroke-width:1.5875e-08"
+       d="m 61.999998,61.999997 c 0,0 -17.999999,-13.999998 -17.999999,-25.999998 0,-12 0,0 0,0 l -12,-4 z"
+       id="path22" />
+    <path
+       style="fill:#aa4400;stroke:#ffffff;stroke-width:1.5875e-08"
+       d="m 2.0000012,1.9999999 c 0,0 13.9999978,17.9999991 25.9999978,17.9999991 12,0 0,0 0,0 l 4,12 z"
+       id="path23" />
+    <path
+       style="fill:#aa4400;stroke:#ffffff;stroke-width:1.5875e-08"
+       d="m 2.0000002,2.0000009 c 0,0 17.9999988,13.9999981 17.9999988,25.9999981 0,12 0,0 0,0 l 12,4 z"
+       id="path24" />
+    <path
+       style="fill:#aa4400;stroke:#ffffff;stroke-width:1.5875e-08"
+       d="m 2.0000012,61.999998 c 0,0 13.9999978,-17.999999 25.9999978,-17.999999 12,0 0,0 0,0 l 4,-12 z"
+       id="path25" />
+    <path
+       style="fill:#aa4400;stroke:#ffffff;stroke-width:1.5875e-08"
+       d="m 2.0000002,61.999997 c 0,0 17.9999988,-13.999998 17.9999988,-25.999998 0,-12 0,0 0,0 l 12,-4 z"
+       id="path26" />
+  </g>
+</svg>

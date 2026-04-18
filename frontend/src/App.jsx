@@ -2,13 +2,23 @@ import Button from './ui/Button';
 import './App.css';
 import cloud3 from './assets/cloud3.svg';
 import Navbar from './ui/Navbar';
+import WriteLetter from './ui/WriteLetter';
+
+import { useState } from 'react';
 
 function App() {
+  const [message, setMessage] = useState("");
+  const [openDialogue, setOpenDialogue] = useState(false);
 
   const handleFishing = () => {
     fetch('http://localhost:3000/api/message')
     .then(res => res.json())
     .then(data => console.log(data))
+    .catch(err => console.error(err))
+  }
+
+  const handleLetter = () => {
+    setOpenDialogue(!openDialogue);
   }
 
   return (
@@ -29,11 +39,12 @@ function App() {
         fontWeight: 300,
         fontStyle: 'italic'
       }}>Umi ni bin</h1>
+      {openDialogue && (<WriteLetter openDialogue={openDialogue} setOpenDialogue={setOpenDialogue} />)}
       <div style={{justifyContent: 'space-ariund',
         width: '325px',
         display: 'flex'
       }}>
-        <Button value="Write a letter" />
+        <Button value="Write a letter" onClick={handleLetter} />
         <Button value={"Try fishing"} onClick={handleFishing} />
       </div>
 
