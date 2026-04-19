@@ -3,17 +3,21 @@ import './App.css';
 import cloud3 from './assets/cloud3.svg';
 import Navbar from './ui/Navbar';
 import WriteLetter from './ui/WriteLetter';
+import ViewLetter from './ui/ViewLetter';
 
 import { useState } from 'react';
 
 function App() {
   const [message, setMessage] = useState("");
+  const [openLetter, setOpenLetter] = useState(false);
   const [openDialogue, setOpenDialogue] = useState(false);
 
   const handleFishing = () => {
+    setOpenLetter(!openLetter);
+
     fetch('http://localhost:3000/api/message')
     .then(res => res.json())
-    .then(data => console.log(data))
+    .then(data => {console.log(data); setMessage(data.message)})
     .catch(err => console.error(err))
   }
 
@@ -40,6 +44,7 @@ function App() {
         fontStyle: 'italic'
       }}>Umi ni bin</h1>
       {openDialogue && (<WriteLetter openDialogue={openDialogue} setOpenDialogue={setOpenDialogue} />)}
+      {openLetter && (<ViewLetter openLetter={openLetter} setOpenLetter={setOpenLetter} message={message} />)}
       <div style={{justifyContent: 'space-ariund',
         width: '325px',
         display: 'flex'
