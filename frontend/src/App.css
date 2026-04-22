@@ -142,3 +142,27 @@ body {
 .wave4 {
   animation: moveRight 35s linear infinite alternate-reverse;
 }
+
+
+.boat {
+  background: url('./assets/boat.svg') no-repeat center/contain;
+  width: 375px;
+  height: 200px;
+  position: fixed;
+  bottom: 25%;
+  left: 7%;
+  z-index: -1;
+  animation: float 5s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(5px) rotate(-2deg);
+  }
+  50% {
+    transform: translateY(-5px) rotate(2deg);
+  }
+  100% {
+    transform: translateY(5px) rotate(-2deg);
+  }
+}
