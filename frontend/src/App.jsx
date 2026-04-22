@@ -18,7 +18,11 @@ function App() {
     fetch('http://localhost:3000/api/message')
     .then(res => res.json())
     .then(data => {console.log(data); setMessage(data.message)})
-    .catch(err => console.error(err))
+    .catch(err => {
+      if (err) {
+        setMessage("Couldn't find any bottles... Make sure the backend and database are running...");
+      }
+    })
   }
 
   const handleLetter = () => {
