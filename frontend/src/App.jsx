@@ -58,8 +58,8 @@ function App() {
       </div>
 
       <div className='boat'>
-        
       </div>
+      <div className="chibi"></div>
       <div className='sea'>
         <div className='wave wave1'></div>
         <div className='wave wave2'></div>

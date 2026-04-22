@@ -166,3 +166,14 @@ body {
     transform: translateY(5px) rotate(-2deg);
   }
 }
+
+.chibi {
+  background: url('./assets/anime_chibi_gyal.png') no-repeat center/contain;
+  width: 375px;
+  height: 200px;
+  position: fixed;
+  bottom: 35%;
+  left: 7%;
+  z-index: -10;
+  animation: float 5s ease-in-out infinite alternate-reverse;
+}
