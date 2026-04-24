@@ -9,6 +9,7 @@ function WriteLetter({ openDialogue, setOpenDialogue }) {
         fetch('http://localhost:3000/api/message', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
+            credentials: 'include',
             body: JSON.stringify({ message })
         })
         .then(res => res.json())

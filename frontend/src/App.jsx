@@ -15,7 +15,9 @@ function App() {
   const handleFishing = () => {
     setOpenLetter(!openLetter);
 
-    fetch('http://localhost:3000/api/message')
+    fetch('http://localhost:3000/api/message', {
+      credentials: 'include'
+    })
     .then(res => res.json())
     .then(data => {console.log(data); setMessage(data.message)})
     .catch(err => {
