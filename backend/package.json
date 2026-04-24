@@ -11,9 +11,12 @@
     "start": "node server.js"
   },
   "dependencies": {
+    "cookie-parser": "^1.4.7",
     "cors": "^2.8.6",
     "express": "^5.2.1",
     "mysql2": "^3.22.0",
-    "pg": "^8.20.0"
+    "pg": "^8.20.0",
+    "redis": "^5.12.1",
+    "uuid": "^14.0.0"
   }
 }
