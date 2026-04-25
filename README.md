@@ -15,17 +15,29 @@ Umi ni bin
 ### Storage
 Each message contains the following data:
 - Message ID (16-32 bytes)
-- User ID (16-32 bytes) (optional)
-- Message (An Average of 150-200 bytes; *assumption*)
+- Message (An Average of 150-200 bytes; *assumption*)  
 
-> Database choice: Postgres  
+> Database choice: Postgres (Source of truth)  
+> Rate limit + Cache: Valkey 
+
+What valkey stores?
+1. Rate Limit: sessionID of each user for rate limiting
+2. Already Seen Message Cache: Maintains a Set per session ID which includes recently seen message IDs
+
+Any issues?
+1. Postgres and Valkey must be kept in sync
+2. Since sessionID is a cookie using incognito or clearing cookies can allow easy bypass of rate limits
 
 Tables include:
-- messages
-- users (optional)
+- messages (message_ID UUID gen_random(), message TEXT)
 
 ### API Design
 1. POST /api/message  
 BODY: {message: Text}
 2. GET /api/message  
 RESPONSE: {RandomMessage: Text}
+
+### Non functional issues
+1. UI is not well responsive
+2. No safegaurd against harmful messages (*This is intentional*)
+3. Anime chibi girl... (*Hey, I tried my best*)
