@@ -1,6 +1,13 @@
 # uminibin
-Umi ni bin
+Umi (海) means "sea" or "ocean."  
+Ni (に) is a particle indicating direction or location  
+Bin (ビンを) typically refers to a "bottle"  
 
+Overall, the name of the project translates to ***"A bottle in the sea"***  
+
+The basic idea of this project is to create a place where people can simulate writing letters and throwing the bottles into the sea, and fishing out a few random bottles and reading what the others wrote in their letters.  
+
+Inspired from Hoyolab's BottleMi  
 
 ### Functional Requirements
 1. Users must be able to write messages into letters and throw it into the sea
@@ -41,3 +48,40 @@ RESPONSE: {RandomMessage: Text}
 1. UI is not well responsive
 2. No safegaurd against harmful messages (*This is intentional*)
 3. Anime chibi girl... (*Hey, I tried my best*)
+
+## To get started
+1. **Clone the repo**:
+```sh
+git clone https://github.com/FlashGrey3000/uminibin.git
+```
+
+2. **Get the databases running**:
+- Start postgres  
+if on arch you can:
+```sh
+sudo pacman -S postgresql
+sudo systemctl start postgresql
+```
+
+Create and configure the `.env` file. You can refer to `.env.example` for reference.  
+
+*(sorry that the entire backend is in a single server.js file as of now...)*  
+
+
+- Start valkey (*or redis; both work the same*)  
+if on arch you can:
+```sh
+sudo pacman -S valkey
+sudo systemctl start valkey
+```
+
+3. **Start the backend**:
+```sh
+cd backend
+node server.js
+```
+4. **Start the frontend**:
+```sh
+cd frontend
+npm run dev
+```
