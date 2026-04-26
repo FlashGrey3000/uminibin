@@ -4,11 +4,13 @@ import cloud3 from './assets/cloud3.svg';
 import Navbar from './ui/Navbar';
 import WriteLetter from './ui/WriteLetter';
 import ViewLetter from './ui/ViewLetter';
+import Metrics from './Metrics';
 
 import { useState } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-function App() {
-  const [message, setMessage] = useState("");
+function World() {
+    const [message, setMessage] = useState("");
   const [openLetter, setOpenLetter] = useState(false);
   const [openDialogue, setOpenDialogue] = useState(false);
 
@@ -31,7 +33,8 @@ function App() {
     setOpenDialogue(!openDialogue);
   }
 
-  return (
+
+  return(
     <div>
       <div className="sky">
         <div className="cloud-layer bg"></div>
@@ -68,6 +71,22 @@ function App() {
         <div className='wave wave3'></div>
         <div className='wave wave4'></div>
       </div>
+    </div>
+  );
+}
+
+function App() {
+  return (
+    <div>
+
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<World />} />
+          <Route path='/metrics' element={<Metrics />} />
+        </Routes>
+      </BrowserRouter>
+
+      
     </div>
   );
 }
