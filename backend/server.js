@@ -119,4 +119,8 @@ app.get('/api/message', async (req, res) => {
     )
 });
 
+app.get('/api/metric', (req, res) => {
+    res.json({metrics: "so fun", umamusume: true, UmazingMeter: 99989});
+});
+
 app.listen(3000, () => console.log("Server running..."));
