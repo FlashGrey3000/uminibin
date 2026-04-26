@@ -98,8 +98,15 @@ app.get('/api/message', async (req, res) => {
     const seenKey = `seen:${getSessionId(req, res)}`;
     while (attempts--) {
         const randId = await valkey.sRandMember("message_id");
+        if (!randId) {
+            return res.status(404).json({ error: "No messages available" });
+        }
         const isSeen = await valkey.sIsMember(seenKey, randId);
         if (!isSeen) {finalId = randId; break}
+    }
+
+    if (!finalId) {
+        return res.status(404).json({error: "You have seen all messages"});
     }
 
     // pool.query("SELECT message from messages OFFSET floor(random() * (SELECT count(*) FROM messages)) LIMIT 1",
