@@ -45,6 +45,12 @@ async function rateLimit(req, res, next) {
     }
 
     if (counter > limit) {
+        const rlc = await valkey.incr('rate_limit_count');
+
+        if (rlc === 1) {
+            await valkey.expire('rate_limit_count', 60 * 60 * 24);
+        }
+
         return res.status(429).json({
             error: "Too many requests. Please try again later",
             tryAgainIn: await valkey.ttl(key)
@@ -81,13 +87,30 @@ function populateRedisWithLatest10kRows() {
     )
 }
 
+function formatUptime(seconds) {
+  const hours = Math.floor(seconds / 3600);
+  const minutes = Math.floor((seconds % 3600) / 60);
+  const secs = Math.floor(seconds % 60);
+  
+  return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+}
+
+console.log(formatUptime(process.uptime()));
+
 app.post('/api/message', rateLimit, (req, res) => {
     const { message } = req.body;
     pool.query("INSERT INTO messages (message) VALUES ($1) RETURNING id",
         [message],
-        (err, result) => {
-            if (err) {console.error(err); res.status(500).send(`error: ${err}`)} 
-            else {valkey.sAdd("message_id", result.rows[0].id);res.status(200).json(result)}
+        async (err, result) => {
+            if (err) {console.error(err); res.status(500).send({error: err})} 
+            else {
+                await valkey.sAdd("message_id", result.rows[0].id);
+                const tl = await valkey.incr('total_letters');
+                if (tl === 1) {
+                    await valkey.ttl('total_letters', 60 * 60 * 24);
+                }
+                res.status(200).json(result);
+            }
         }
     )
 });
@@ -109,6 +132,11 @@ app.get('/api/message', async (req, res) => {
         return res.status(404).json({error: "You have seen all messages"});
     }
 
+    const tf = await valkey.incr('total_fishes');
+    if (tf === 1) {
+        await valkey.ttl('total_fishes', 60 * 60 * 24);
+    }
+
     // pool.query("SELECT message from messages OFFSET floor(random() * (SELECT count(*) FROM messages)) LIMIT 1",
     pool.query("SELECT message from messages WHERE id = ($1)",
         [finalId],
@@ -119,8 +147,14 @@ app.get('/api/message', async (req, res) => {
     )
 });
 
-app.get('/api/metric', (req, res) => {
-    res.json({metrics: "so fun", umamusume: true, UmazingMeter: 99989});
+app.get('/api/metric', async (req, res) => {
+    res.json({
+        totalRateLimits: await valkey.get('rate_limit_count'),
+        totalLetters: await valkey.get('total_letters'),
+        totalFishes: await valkey.get('total_fishes'),
+        umazingScore: 99999999989,
+        serverUpTime: formatUptime(process.uptime())
+    });
 });
 
 app.listen(3000, () => console.log("Server running..."));
