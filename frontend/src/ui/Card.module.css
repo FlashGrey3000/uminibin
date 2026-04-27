@@ -1,0 +1,26 @@
+.outer {
+    font-family: monospace;
+    background-color: #ddd;
+    padding: 8px 24px;
+    margin: 10px;
+    border-radius: 12px;
+    max-width: fit-content;
+    box-shadow: 4px 4px 16px black, inset 4px 4px 8px rgb(236, 253, 255);
+}
+
+.outer:hover {
+    transform: translateY(-4px);
+    transition: all 200ms;
+}
+
+.subtitle {
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.value {
+    font-size: xx-large;
+}
+
+body, html {
+    overflow: auto;
+}
