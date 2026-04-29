@@ -1,7 +1,8 @@
 import express from 'express';
-import { handleGet } from '../controller/message.controller.js';
-const router = express.Router();
+import { handleGet, handlePost, handleRateLimit } from '../controller/message.controller.js';
+const messageRouter = express.Router();
 
-router.get('/message', handleGet);
+messageRouter.get('/message', handleGet);
+messageRouter.post('/message', handleRateLimit, handlePost);
 
-export default router;
+export default messageRouter
