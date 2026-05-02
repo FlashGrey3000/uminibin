@@ -17,4 +17,6 @@ app.use(express.json());
 app.use('/api', messageRouter);
 app.use('/api', metricRouter);
 
-app.listen(3000, () => {console.log("Serving server 2.0 at port 3000...")});
+// app.listen(3000, () => {console.log("Serving server 2.0 at port 3000...")});
+
+export default app;

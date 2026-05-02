@@ -1,22 +1,27 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "description": "",
+  "description": "uminibin",
   "license": "ISC",
-  "author": "",
+  "author": "flashgrey",
   "type": "module",
-  "main": "server.js",
+  "main": "start.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "start": "node start.js"
   },
   "dependencies": {
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
     "express": "^5.2.1",
     "mysql2": "^3.22.0",
     "pg": "^8.20.0",
     "redis": "^5.12.1",
     "uuid": "^14.0.0"
+  },
+  "devDependencies": {
+    "jest": "^30.3.0",
+    "supertest": "^7.2.2"
   }
 }
