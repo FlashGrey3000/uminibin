@@ -14,7 +14,7 @@ describe('GET /api/metric', () => {
         const res = await request(app).get('/api/metric');
 
         expect(res.statusCode).toBe(200);
-        expect(res.body).toHaveProperty('hits');
+        expect(res.body).toHaveProperty('rate_limits');
         expect(res.body).toHaveProperty('total_letters');
     })
 })
