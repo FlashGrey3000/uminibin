@@ -7,7 +7,10 @@ function getSessionId(req, res) {
         sid = uuidv4();
         
         res.cookie("sid", sid, {
-            maxAge: 1000 * 60 * 60
+            maxAge: 1000 * 60 * 60,
+            httpOnly: true,
+            secure: true,
+            sameSite: 'none'
         });
     }
 
