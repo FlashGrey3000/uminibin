@@ -1,3 +1,3 @@
-import app from "./server";
+import app from "./server.js";
 
 app.listen(3000, () => console.log("Node.js server 2.0, running at port 3000..."));
