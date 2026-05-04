@@ -14,9 +14,9 @@ async function insertMessage(message) {
         [message]
     );
 
-    await valkey.sAdd(KEYS.all_message_ids, data.rows[0].id);
+    await valkey.sAdd(KEYS.all_message_ids, String(data.rows[0].id));
 
-    return data.rows[0].id;
+    return String(data.rows[0].id);
 }
 
 async function getRandomMessageId() {
@@ -26,13 +26,13 @@ async function getRandomMessageId() {
 }
 
 async function isMessageSeen(id, sid) {
-    const seen = await valkey.sIsMember(KEYS.user_seen(sid), id);
+    const seen = await valkey.sIsMember(KEYS.user_seen(sid), String(id));
 
     return seen;
 }
 
 async function addMessageSeen(id, sid) {
-    await valkey.sAdd(KEYS.user_seen(sid), id);
+    await valkey.sAdd(KEYS.user_seen(sid), String(id));
     await valkey.expire(KEYS.user_seen(sid), 3600);
 }
 
@@ -64,7 +64,7 @@ function populateRedis() {
             if (err) {console.error(err)}
             else {
                 for (const row of result.rows) {
-                    valkey.sAdd(KEYS.all_message_ids, row.id);
+                    await valkey.sAdd(KEYS.all_message_ids, String(row.id));
                 }
             }
         }
