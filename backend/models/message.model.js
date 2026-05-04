@@ -37,17 +37,33 @@ async function addMessageSeen(id, sid) {
 }
 
 async function incrRateLimit(sid) {
-    const rate = await valkey.incr(KEYS.user_rate(sid));
+    const rate = await valkey.incr(KEYS.user_post_rate(sid));
+
+    return rate;
+}
+
+async function incrGetRateLimit(sid) {
+    const rate = await valkey.incr(KEYS.user_get_rate(sid));
 
     return rate;
 }
 
 async function addRateExpiry(sid, seconds) {
-    await valkey.expire(KEYS.user_rate(sid), seconds);
+    await valkey.expire(KEYS.user_post_rate(sid), seconds);
+}
+
+async function addGetRateExpiry(sid, seconds) {
+    await valkey.expire(KEYS.user_get_rate(sid), seconds);
 }
 
 async function ttlRate(sid) {
-    const ttl = await valkey.ttl(KEYS.user_rate(sid));
+    const ttl = await valkey.ttl(KEYS.user_post_rate(sid));
+
+    return ttl;
+}
+
+async function ttlGetRate(sid) {
+    const ttl = await valkey.ttl(KEYS.user_get_rate(sid));
 
     return ttl;
 }
@@ -75,4 +91,4 @@ async function populateRedis() {
     }
 }
 
-export { getMessageById, insertMessage, getRandomMessageId, isMessageSeen, addMessageSeen, incrRateLimit, addRateExpiry, ttlRate, hitRateLimit, populateRedis }
+export { getMessageById, insertMessage, getRandomMessageId, incrGetRateLimit, addGetRateExpiry, ttlGetRate, isMessageSeen, addMessageSeen, incrRateLimit, addRateExpiry, ttlRate, hitRateLimit, populateRedis }
