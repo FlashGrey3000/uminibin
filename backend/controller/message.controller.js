@@ -19,7 +19,7 @@ async function handleGet(req, res) {
     }
 
     if (!finalId) {
-        res.status(404).send({error: "No new messages found..."});
+        return res.status(404).send({error: "No new messages found..."});
     }
 
     const row = await getMessageById(finalId);
