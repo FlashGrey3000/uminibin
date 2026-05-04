@@ -58,7 +58,7 @@ async function hitRateLimit() {
     return hits;
 }
 
-function populateRedis() {
+async function populateRedis() {
     pool.query("SELECT id FROM messages ORDER BY created_at DESC LIMIT 100",
         (err, result) => {
             if (err) {console.error(err)}
