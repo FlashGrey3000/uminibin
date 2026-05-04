@@ -59,16 +59,20 @@ async function hitRateLimit() {
 }
 
 async function populateRedis() {
-    pool.query("SELECT id FROM messages ORDER BY created_at DESC LIMIT 100",
-        (err, result) => {
-            if (err) {console.error(err)}
-            else {
-                for (const row of result.rows) {
-                    await valkey.sAdd(KEYS.all_message_ids, String(row.id));
-                }
-            }
-        }
-    );
+    try {
+        const result = await pool.query(
+            "SELECT id FROM messages ORDER BY created_at DESC LIMIT 100"
+        );
+
+        await Promise.all(
+            result.rows.map(row =>
+                valkey.sAdd(KEYS.all_message_ids, String(row.id))
+            )
+        );
+
+    } catch (err) {
+        console.error(err);
+    }
 }
 
 export { getMessageById, insertMessage, getRandomMessageId, isMessageSeen, addMessageSeen, incrRateLimit, addRateExpiry, ttlRate, hitRateLimit, populateRedis }
