@@ -10,14 +10,15 @@ import { useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 function World() {
-    const [message, setMessage] = useState("");
+  const [message, setMessage] = useState("");
   const [openLetter, setOpenLetter] = useState(false);
   const [openDialogue, setOpenDialogue] = useState(false);
+  const API = import.meta.env.VITE_API_URL;
 
   const handleFishing = () => {
     setOpenLetter(!openLetter);
 
-    fetch('http://localhost:3000/api/message', {
+    fetch(`${API}/api/message`, {
       credentials: 'include'
     })
     .then(res => res.json())

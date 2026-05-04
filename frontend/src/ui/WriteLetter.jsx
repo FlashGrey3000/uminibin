@@ -4,9 +4,10 @@ import { useState } from 'react';
 
 function WriteLetter({ openDialogue, setOpenDialogue }) {
     const [message, setMessage] = useState("");
+    const API = import.meta.env.VITE_API_URL;
 
     const handleThrow = () => {
-        fetch('http://localhost:3000/api/message', {
+        fetch(`${API}/api/message`, {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             credentials: 'include',
