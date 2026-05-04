@@ -1,8 +1,14 @@
 import { createClient } from 'redis';
 
-const valkey = createClient();
+const valkey = createClient({
+    url: process.env.REDIS_URL 
+});
 
-(async () => await valkey.connect())()
+valkey.on("error", (err) => {
+    console.error("Redis error:", err);
+});
+
+await valkey.connect();
 
 export default valkey;
 export const METRIC_KEYS = {
