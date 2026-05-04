@@ -22,7 +22,7 @@ function World() {
       credentials: 'include'
     })
     .then(res => res.json())
-    .then(data => {console.log(data); setMessage(data.message)})
+    .then(data => {console.log(data); setMessage(data.message || data.error)})
     .catch(err => {
       if (err) {
         setMessage("Couldn't find any bottles... Make sure the backend and database are running...");
