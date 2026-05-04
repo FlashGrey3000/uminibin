@@ -12,9 +12,11 @@ function Metrics() {
 
     // const metricList = Object.entries(metrics).map(([key, val]) => <tr key={key}><td>{key}</td><td>{val}</td></tr>);
     const metricList = Object.entries(metrics).map(([key, val]) => <Card key={key} title={key} value={val} />);
-    
+    const API = import.meta.env.VITE_API_URL;
+
+
     const fetchMetrics = () => {
-        fetch('http://localhost:3000/api/metric', {
+        fetch(`${API}/api/metric`, {
             credentials: 'include'
         })
         .then(res => res.json())
