@@ -6,7 +6,7 @@ function ViewLetter({ openLetter, setOpenLetter, message, messageColor }) {
             <div style={{margin: "2%", border: "#ffbc84 2px dashed", height: "93%", borderRadius: "12px"}}>
                 <img src={crossImage} alt="" width={50} style={{position: "absolute", right: "3%", marginTop: "5px", cursor: "pointer"}} onClick={() => setOpenLetter(!openLetter)} />
                 <label htmlFor="mbox" style={{fontFamily: "Winky Rough", fontSize: "2em", marginInline: "20px"}}>Tegami</label><br />
-                <div type="text" name="mbox" id="mbox" style={{padding: "12px", backgroundColor: messageColor ? "#b20000" : "#ffdfaa", border: "none", borderRadius: "12px", width: "80%", height: "55%", position: "absolute", top: "20%", left: "5%", boxShadow: "inset 2px 5px 10px rgba(0,0,0,0.3)", whiteSpace: 'pre-wrap'}} >{message}</div>
+                <div type="text" name="mbox" id="mbox" style={{padding: "12px", color: messageColor ? "#b20000" : "#000", backgroundColor: "#ffdfaa", border: "none", borderRadius: "12px", width: "80%", height: "55%", position: "absolute", top: "20%", left: "5%", boxShadow: "inset 2px 5px 10px rgba(0,0,0,0.3)", whiteSpace: 'pre-wrap', overflowY: 'scroll'}} >{message}</div>
             </div>
         </div>
     );
