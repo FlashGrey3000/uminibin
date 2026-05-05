@@ -11,6 +11,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 function World() {
   const [message, setMessage] = useState("");
+  const [messageColor, setMessageColor] = useState(false);
   const [openLetter, setOpenLetter] = useState(false);
   const [openDialogue, setOpenDialogue] = useState(false);
   const API = import.meta.env.VITE_API_URL;
@@ -22,10 +23,11 @@ function World() {
       credentials: 'include'
     })
     .then(res => res.json())
-    .then(data => {console.log(data); setMessage(data.message || data.error)})
+    .then(data => {console.log(data); setMessage(data.message || data.error); setMessageColor(false)})
     .catch(err => {
       if (err) {
         setMessage("Couldn't find any bottles... Make sure the backend and database are running...");
+        setMessageColor(true);
       }
     })
   }
@@ -54,7 +56,7 @@ function World() {
         fontStyle: 'italic'
       }}>Umi ni bin</h1>
       {openDialogue && (<WriteLetter openDialogue={openDialogue} setOpenDialogue={setOpenDialogue} />)}
-      {openLetter && (<ViewLetter openLetter={openLetter} setOpenLetter={setOpenLetter} message={message} />)}
+      {openLetter && (<ViewLetter openLetter={openLetter} setOpenLetter={setOpenLetter} message={message} messageColor={messageColor} />)}
       <div style={{justifyContent: 'space-ariund',
         width: '325px',
         display: 'flex'
