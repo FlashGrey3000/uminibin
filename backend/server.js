@@ -10,7 +10,7 @@ const app = express();
 
 app.use(cookieParser());
 app.use(cors({
-    origin: 'https://uminibin.vercel.app',
+    origin: process.env.FRONTEND_URL || 'https://uminibin.vercel.app',
     credentials: true
 }));
 app.use(express.json());
