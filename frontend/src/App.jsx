@@ -14,22 +14,34 @@ function World() {
   const [messageColor, setMessageColor] = useState(false);
   const [openLetter, setOpenLetter] = useState(false);
   const [openDialogue, setOpenDialogue] = useState(false);
+  const [loading, setLoading] = useState(true);
   const API = import.meta.env.VITE_API_URL;
 
   const handleFishing = () => {
     setOpenLetter(!openLetter);
-
+    
     fetch(`${API}/api/message`, {
       credentials: 'include'
     })
     .then(res => res.json())
-    .then(data => {console.log(data); setMessage(data.message || data.error); setMessageColor(false)})
+    .then(data => {
+      console.log(data); 
+      setMessage(data.message || data.error);
+      if (data.error) {
+        setMessageColor(true)
+      } else {
+        setMessageColor(false)
+      }
+    })
     .catch(err => {
       if (err) {
         setMessage("Couldn't find any bottles... Make sure the backend and database are running...");
         setMessageColor(true);
       }
     })
+    .finally(() => {
+      setLoading(false);
+    });
   }
 
   const handleLetter = () => {
@@ -56,7 +68,7 @@ function World() {
         fontStyle: 'italic'
       }}>Umi ni bin</h1>
       {openDialogue && (<WriteLetter openDialogue={openDialogue} setOpenDialogue={setOpenDialogue} />)}
-      {openLetter && (<ViewLetter openLetter={openLetter} setOpenLetter={setOpenLetter} message={message} messageColor={messageColor} />)}
+      {openLetter && (<ViewLetter openLetter={openLetter} setOpenLetter={setOpenLetter} message={message} messageColor={messageColor} loading={loading} setLoading={setLoading} />)}
       <div style={{justifyContent: 'space-ariund',
         width: '325px',
         display: 'flex'
