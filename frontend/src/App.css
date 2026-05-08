@@ -179,23 +179,46 @@ body {
 }
 
 .fishing_gyal_holder {
-  position: relative;
-
   width: clamp(220px, 60vw, 500px);
-  aspect-ratio: 1 / 1;
+  height: 100%;
 
   margin: auto;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
 }
 
-.fishing_gyal_holder img {
+.fishing_gyal {
+  position: relative;
+
+  width: 100%;
+  max-width: 400px;
+
+  aspect-ratio: 1 / 1;
+
+  flex-shrink: 0;
+}
+
+.fishing_gyal img {
   position: absolute;
   inset: 0;
 
   width: 100%;
   height: 100%;
+}
 
-  pointer-events: none;
-  user-select: none;
+.fishing_gyal_holder p {
+  margin-top: 12px;
+
+  text-align: center;
+
+  max-width: 90%;
+
+  word-wrap: break-word;
 }
 
 #torso-legs,

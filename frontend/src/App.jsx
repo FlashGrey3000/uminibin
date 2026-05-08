@@ -68,7 +68,7 @@ function World() {
         fontStyle: 'italic'
       }}>Umi ni bin</h1>
       {openDialogue && (<WriteLetter openDialogue={openDialogue} setOpenDialogue={setOpenDialogue} />)}
-      {openLetter && (<ViewLetter openLetter={openLetter} setOpenLetter={setOpenLetter} message={message} messageColor={messageColor} loading={loading} setLoading={setLoading} />)}
+      {openLetter && (<ViewLetter openLetter={openLetter} setOpenLetter={setOpenLetter} message={message} setMessage={setMessage} messageColor={messageColor} setMessageColor={setMessageColor} loading={loading} setLoading={setLoading} />)}
       <div style={{justifyContent: 'space-ariund',
         width: '325px',
         display: 'flex'
